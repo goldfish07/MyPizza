@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">My Pizza</string>
+    <string name="customize"><u>Customize</u></string>
 </resources>

@@ -3,11 +3,34 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.21458333333333332" />
-        <entry key="app/src/main/res/layout/adapter_pizza.xml" value="0.35799522673031026" />
+        <entry key="app/src/main/res/drawable/dls_ic_non_veg_16dp.xml" value="0.122" />
+        <entry key="app/src/main/res/drawable/ic_add.xml" value="0.123" />
+        <entry key="app/src/main/res/drawable/ic_baseline_check_box_outline_blank_24.xml" value="0.122" />
+        <entry key="app/src/main/res/drawable/ic_currency_rupee.xml" value="0.122" />
+        <entry key="app/src/main/res/drawable/ic_currency_rupee_black.xml" value="0.123" />
+        <entry key="app/src/main/res/drawable/ic_empty_cart.xml" value="0.123" />
+        <entry key="app/src/main/res/drawable/ic_non_veg.xml" value="0.1565" />
+        <entry key="app/src/main/res/drawable/ic_veg.xml" value="0.1565" />
+        <entry key="app/src/main/res/drawable/round_sheet.xml" value="0.122" />
+        <entry key="app/src/main/res/drawable/veg.xml" value="0.122" />
+        <entry key="app/src/main/res/layout/activity_cart.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_customize.xml" value="0.2140625" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/adapter_crusts.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/adapter_my_pizza.xml" value="0.1761436511329628" />
+        <entry key="app/src/main/res/layout/adapter_old.xml" value="0.2140625" />
+        <entry key="app/src/main/res/layout/adapter_pizza.xml" value="0.3816793893129771" />
+        <entry key="app/src/main/res/layout/adapter_sizes.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/dialog_customize.xml" value="0.17571611799914494" />
+        <entry key="app/src/main/res/layout/dialog_progress.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/include_quantity_controls.xml" value="0.55" />
+        <entry key="app/src/main/res/layout/layout_your_cart_is_empty.xml" value="0.1761436511329628" />
+        <entry key="app/src/main/res/layout/toolbar.xml" value="0.2140625" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
       </map>
     </option>
   </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
