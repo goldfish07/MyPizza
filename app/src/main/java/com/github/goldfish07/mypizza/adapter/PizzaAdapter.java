@@ -53,7 +53,7 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder> 
         holder.foodTypeIndicator.setImageResource(pizza.get(position).getVeg() ?
                 R.drawable.ic_veg : R.drawable.ic_non_veg);
         holder.btnAddItem.setOnClickListener(this);
-        holder.txtCustomize.setOnClickListener(this);
+        //holder.txtCustomize.setOnClickListener(this);
     }
 
     @Override
@@ -65,17 +65,18 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder> 
     public void onClick(View view) {
         if (view.getId() == R.id.btnAddItem) {
             onAddPizzaListener.onAddPizza(pizza.get(position));
-        } else if (view.getId() == R.id.txtCustomize) {
-            Intent intent = new Intent(context, CustomizeActivity.class);
-            Pizza pizzas = new Pizza(pizza.get(position));
-            intent.putExtra(INTENT_KEY_PIZZA_OBJ, pizzas);
-            intent.putParcelableArrayListExtra(INTENT_KEY_CRUSTS_OBJ,
-                    (ArrayList<? extends Parcelable>) pizzas.getCrusts());
-            intent.putParcelableArrayListExtra(INTENT_KEY_SIZES_OBJ,
-                    (ArrayList<? extends Parcelable>) pizzas.getSizes());
-
-            context.startActivity(intent);
         }
+//        else if (view.getId() == R.id.txtCustomize) {
+//            Intent intent = new Intent(context, CustomizeActivity.class);
+//            Pizza pizzas = new Pizza(pizza.get(position));
+//            intent.putExtra(INTENT_KEY_PIZZA_OBJ, pizzas);
+//            intent.putParcelableArrayListExtra(INTENT_KEY_CRUSTS_OBJ,
+//                    (ArrayList<? extends Parcelable>) pizzas.getCrusts());
+//            intent.putParcelableArrayListExtra(INTENT_KEY_SIZES_OBJ,
+//                    (ArrayList<? extends Parcelable>) pizzas.getSizes());
+//
+//            context.startActivity(intent);
+//        }
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -84,7 +85,7 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder> 
         private final TextView pizzaDesc;
         private final ImageView foodTypeIndicator;
         private final MaterialButton btnAddItem;
-        private final TextView txtCustomize;
+//        private final TextView txtCustomize;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -92,7 +93,7 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder> 
             pizzaDesc = itemView.findViewById(R.id.pizzaDesc);
             foodTypeIndicator = itemView.findViewById(R.id.foodTypeIndicator);
             btnAddItem = itemView.findViewById(R.id.btnAddItem);
-            txtCustomize = itemView.findViewById(R.id.txtCustomize);
+//            txtCustomize = itemView.findViewById(R.id.txtCustomize);
         }
     }
 }

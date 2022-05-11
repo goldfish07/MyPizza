@@ -19,7 +19,8 @@
             android:layout_alignParentTop="true"
             android:src="@drawable/pizza"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="TODO" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -37,7 +38,8 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="2dp"
                 android:src="@drawable/ic_non_veg"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:contentDescription="TODO" />
 
             <TextView
                 android:id="@+id/pizzaName"
@@ -64,49 +66,36 @@
             app:layout_constraintStart_toEndOf="@+id/pizzaImg"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
-        <LinearLayout
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="bottom"
+            android:layout_marginBottom="8dp"
+            android:text="Medium | Hand-toasted"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textSize="11sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btnAddItem"
-            app:layout_constraintStart_toEndOf="@+id/pizzaImg"
-            app:layout_constraintTop_toBottomOf="@+id/pizzaDesc">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Medium | Hand-toasted"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textSize="11sp" />
-
-            <TextView
-                android:id="@+id/txtCustomize"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/customize"
-                android:textSize="13sp" />
-        </LinearLayout>
+            app:layout_constraintHorizontal_bias="0.101"
+            app:layout_constraintStart_toEndOf="@+id/pizzaImg" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnAddItem"
             style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="wrap_content"
+            android:layout_width="95dp"
             android:layout_height="38dp"
+            android:layout_marginEnd="4dp"
             android:includeFontPadding="false"
-            android:minHeight="0dp"
             android:minWidth="0dp"
+            android:minHeight="0dp"
             android:text="Add"
-            android:textColor="@android:color/holo_green_dark"
+            android:textColor="@color/green"
             android:textSize="14sp"
             app:cornerRadius="4dp"
-            android:layout_marginEnd="4dp"
+            app:rippleColor="@color/green"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/pizzaDesc"
-            app:strokeColor="@android:color/holo_green_dark" />
+            app:layout_constraintVertical_bias="1.0"
+            app:strokeColor="@color/green" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

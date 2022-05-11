@@ -1,7 +1,10 @@
 package com.github.goldfish07.mypizza;
 
 import static com.github.goldfish07.mypizza.Constants.INTENT_KEY_MY_PIZZA_OBJ;
+import static com.github.goldfish07.mypizza.Constants.REQUEST_CODE_CART_EMPTY;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,7 +27,6 @@ import com.github.goldfish07.mypizza.activity.ViewCartActivity;
 import com.github.goldfish07.mypizza.adapter.CrustAdapter;
 import com.github.goldfish07.mypizza.adapter.PizzaAdapter;
 import com.github.goldfish07.mypizza.adapter.SizeAdapter;
-import com.github.goldfish07.mypizza.interfaces.MyPizzaListener;
 import com.github.goldfish07.mypizza.interfaces.OnCrustClickListener;
 import com.github.goldfish07.mypizza.interfaces.OnAddPizzaListener;
 import com.github.goldfish07.mypizza.interfaces.OnSizeClickListener;
@@ -44,13 +46,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity implements Callback<List<Pizza>>, OnAddPizzaListener, PizzaPriceListener, View.OnClickListener, MyPizzaListener {
+public class MainActivity extends AppCompatActivity implements Callback<List<Pizza>>, OnAddPizzaListener, PizzaPriceListener, View.OnClickListener {
 
     RecyclerView recyclerView;
     List<Pizza> pizzas;
     PizzaAdapter pizzaAdapter;
     protected ProgressBar progressBar;
-    TextView txtPrice;
+    TextView txtViewCartPrice;
     RelativeLayout viewCartBtn;
     public MyPizza myPizza;
 
@@ -61,8 +63,8 @@ public class MainActivity extends AppCompatActivity implements Callback<List<Piz
         progressBar = new ProgressBar.Builder(this);
         setSupportActionBar(findViewById(R.id.toolbar));
         recyclerView = findViewById(R.id.recyclerView);
-        viewCartBtn = findViewById(R.id.materialButton);
-        txtPrice = findViewById(R.id.txtPrice);
+        viewCartBtn = findViewById(R.id.totalLayout);
+        txtViewCartPrice = findViewById(R.id.totalPriceTxt);
         viewCartBtn.setOnClickListener(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         pizzas = new ArrayList<>();
@@ -95,39 +97,45 @@ public class MainActivity extends AppCompatActivity implements Callback<List<Piz
 ////            price = Integer.parseInt(txtPrice.getText().toString()) + Integer.parseInt(txtPrice.getText().toString());
 ////        }
 //        txtPrice.setText(String.valueOf(price));
-        new CustomizeDialog(this, pizza, this, this).show(getSupportFragmentManager(), "this");
+        new CustomizeDialog(this, pizza, this).show(getSupportFragmentManager(), "this");
     }
 
     int price = 0;
-
-    @Override
-    public void onPriceUpdate(int totalPrice) {
-//        if (price == 0) {
-//            price = totalPrice;
-//        } else {
-//            price = price + totalPrice;
-//        }
-        txtPrice.setText(String.valueOf(totalPrice));
-        Log.e("price", String.valueOf(price));
-    }
-
     ArrayList<MyPizza> myPizzaArrayList = new ArrayList<>();
 
     @Override
+    public void onPriceUpdate(MyPizza myPizza, int totalPrice) {
+        if (price == 0) {
+            price = totalPrice;
+        } else {
+            price = price + totalPrice;
+        }
+        myPizzaArrayList.add(myPizza);
+        txtViewCartPrice.setText(String.valueOf(price));
+        Log.e("price", String.valueOf(price));
+    }
+    
+    @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.materialButton) {
+        if (view.getId() == R.id.totalLayout) {
             Intent intent = new Intent(MainActivity.this, ViewCartActivity.class);
             if (myPizza != null)
                 myPizzaArrayList.add(myPizza);
-                intent.putParcelableArrayListExtra(INTENT_KEY_MY_PIZZA_OBJ, myPizzaArrayList);
-            startActivity(intent);
+            intent.putParcelableArrayListExtra(INTENT_KEY_MY_PIZZA_OBJ, myPizzaArrayList);
+            launcher.launch(intent);
         }
     }
 
-    @Override
-    public void onMyPizza(MyPizza myPizza) {
-        this.myPizza = myPizza;
-    }
+
+    ActivityResultLauncher<Intent> launcher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == REQUEST_CODE_CART_EMPTY) {
+                    myPizzaArrayList.clear();
+                    txtViewCartPrice.setText("0");
+                }
+            });
+
 
     public static class CustomizeDialog extends BottomSheetDialogFragment implements OnCrustClickListener, OnSizeClickListener, View.OnClickListener {
 
@@ -143,24 +151,20 @@ public class MainActivity extends AppCompatActivity implements Callback<List<Piz
         Pizza pizza;
         List<Crusts> crusts;
         PizzaPriceListener pizzaPriceListener;
-        MyPizzaListener myPizzaListener;
         MaterialButton addItemToCartBtn;
-//        Sizes sizes = null;
+        //        Sizes sizes = null;
         MyPizza myPizza;
 
-        public CustomizeDialog(Activity context, Pizza pizza, PizzaPriceListener pizzaPriceListener, MyPizzaListener myPizzaListener) {
+        public CustomizeDialog(Activity context, Pizza pizza, PizzaPriceListener pizzaPriceListener) {
             this.context = context;
             this.pizza = pizza;
             this.pizzaPriceListener = pizzaPriceListener;
-            this.myPizzaListener = myPizzaListener;
         }
 
         @Override
         public void onCreate(@Nullable Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            //  context.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }
-
 
         @Nullable
         @Override
@@ -200,24 +204,21 @@ public class MainActivity extends AppCompatActivity implements Callback<List<Piz
 
         @Override
         public void onSizeSelected(Sizes sizes) {
-           // this.sizes = sizes;
+            // this.sizes = sizes;
             sizePriceTxt.setText(String.valueOf(sizes.getPrice()));
         }
 
         @Override
         public void onSizeSelected(MyPizza myPizza) {
-            this.myPizza=myPizza;
-            myPizzaListener.onMyPizza(myPizza);
+            this.myPizza = myPizza;
             sizePriceTxt.setText(String.valueOf(myPizza.getPrice()));
-
         }
-
 
         @Override
         public void onClick(View view) {
             if (view.getId() == R.id.addItemToCartBtn) {
                 if (myPizza != null)
-                    pizzaPriceListener.onPriceUpdate(myPizza.getPrice());
+                    pizzaPriceListener.onPriceUpdate(myPizza, myPizza.getPrice());
                 dismiss();
             }
         }

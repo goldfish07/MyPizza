@@ -3,10 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
+    android:layout_margin="6dp"
     android:background="?attr/selectableItemBackground"
     android:clickable="true"
-    android:focusable="true">
+    android:focusable="true"
+    android:padding="3dp">
 
     <ImageView
         android:id="@+id/foodIndicator"
@@ -16,7 +17,8 @@
         android:src="@drawable/ic_non_veg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="food Indicator" />
 
     <TextView
         android:id="@+id/crustType"
@@ -36,7 +38,8 @@
         android:src="@drawable/ic_currency_rupee_black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/sizePrices"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="Rupee symbol" />
 
     <TextView
         android:id="@+id/sizePrices"
