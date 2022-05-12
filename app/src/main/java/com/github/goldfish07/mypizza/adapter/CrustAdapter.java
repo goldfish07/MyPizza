@@ -22,37 +22,39 @@ import com.google.android.material.radiobutton.MaterialRadioButton;
 
 import java.util.List;
 
+/**
+ * Adapter for {@link Crusts} object
+ */
 public class CrustAdapter extends RecyclerView.Adapter<CrustAdapter.ViewHolder> {
 
     private int mSelectedItem = 0;
-    Context context;
-    List<Crusts> crusts;
-    Pizza pizza;
-    OnCrustClickListener onCrustClickListener;
-    ViewHolder holder;
-    SharedPreferences preferences;
-    RecyclerView recyclerView;
+    private final Context context;
+    private final List<Crusts> crusts;
+    private final Pizza pizza;
+    private final OnCrustClickListener onCrustClickListener;
     int position;
 
-
+    /**
+     * Constructs a new {@link CrustAdapter}.
+     * @param context is the activity context
+     * @param pizza is {@link Pizza} object
+     * @param onCrustClickListener is event listener for the crust selection
+     */
     public CrustAdapter(Context context, Pizza pizza, OnCrustClickListener onCrustClickListener) {
         this.context = context;
         this.pizza = pizza;
         this.crusts = pizza.getCrusts();
         this.onCrustClickListener = onCrustClickListener;
-        preferences = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        recyclerView = (RecyclerView) parent;
         return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.adapter_crusts, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        this.holder = holder;
         this.position = position;
 
         if (!holder.radioButton.isChecked() && position == pizza.getDefaultCrust() - 1) { //for selecting default radio button
@@ -94,9 +96,9 @@ public class CrustAdapter extends RecyclerView.Adapter<CrustAdapter.ViewHolder> 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView foodIndicator;
-        TextView type;
-        MaterialRadioButton radioButton;
+        private ImageView foodIndicator;
+        private final TextView type;
+        private final MaterialRadioButton radioButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

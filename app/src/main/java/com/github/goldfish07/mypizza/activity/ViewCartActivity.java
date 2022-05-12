@@ -27,22 +27,21 @@ import java.util.List;
 
 public class ViewCartActivity extends MainActivity implements View.OnClickListener, OnCartUpdateListener {
 
-    RecyclerView recyclerView;
-    MyPizzaAdapter pizzaAdapter;
-    RelativeLayout rootCart;
-    List<MyPizza> myPizzaList = new ArrayList<>();
-    RelativeLayout totalLayout;
-    TextView totalPriceTxt;
+    private RelativeLayout rootCart;
+    private List<MyPizza> myPizzaList = new ArrayList<>();
+    private RelativeLayout totalLayout;
+    private TextView totalPriceTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
         rootCart = findViewById(R.id.rootCart);
-        recyclerView = findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
         totalLayout = findViewById(R.id.totalLayout);
         totalPriceTxt = findViewById(R.id.totalPriceTxt);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
 
         myPizzaList = getIntent().getParcelableArrayListExtra(INTENT_KEY_MY_PIZZA_OBJ);
 //        if(Utils.isServerDBAvailable(this)){
@@ -55,15 +54,15 @@ public class ViewCartActivity extends MainActivity implements View.OnClickListen
 //                emptyCart();
 //            }
 //        }
-        if(myPizzaList.isEmpty()){
+        if (myPizzaList.isEmpty()) {
             emptyCart();
+        } else {
+            MyPizzaAdapter pizzaAdapter = new MyPizzaAdapter(this, myPizzaList, this);
+//            recyclerView.getRecycledViewPool().setMaxRecycledViews(TYPE_CAROUSEL, 0);
+
+            recyclerView.setAdapter(pizzaAdapter);
         }
-
-        pizzaAdapter = new MyPizzaAdapter(this, myPizzaList, this);
-        recyclerView.setAdapter(pizzaAdapter);
-
     }
-
 
     public void emptyCart() {
         totalLayout.setVisibility(View.GONE);
@@ -87,8 +86,8 @@ public class ViewCartActivity extends MainActivity implements View.OnClickListen
 
     @Override
     public void onTotalPrice(int totalPrice) {
-        Log.e("totalPrice", String.valueOf(totalPrice));
-        totalPriceTxt.setText(String.valueOf(totalPrice));
+        String price = String.valueOf(totalPrice);
+        Log.e("totalPrice", price);
+        totalPriceTxt.setText(price);
     }
-
 }

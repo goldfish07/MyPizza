@@ -1,13 +1,7 @@
 package com.github.goldfish07.mypizza.adapter;
 
-import static com.github.goldfish07.mypizza.Constants.INTENT_KEY_CRUSTS_OBJ;
-import static com.github.goldfish07.mypizza.Constants.INTENT_KEY_PIZZA_OBJ;
-import static com.github.goldfish07.mypizza.Constants.INTENT_KEY_SIZES_OBJ;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,15 +11,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.github.goldfish07.mypizza.activity.CustomizeActivity;
-import com.github.goldfish07.mypizza.interfaces.OnAddPizzaListener;
 import com.github.goldfish07.mypizza.R;
+import com.github.goldfish07.mypizza.interfaces.OnAddPizzaListener;
+import com.github.goldfish07.mypizza.model.Crusts;
 import com.github.goldfish07.mypizza.model.Pizza;
 import com.google.android.material.button.MaterialButton;
 
-import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Adapter for {@link Pizza} object
+ */
 public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder> implements View.OnClickListener {
 
     private final Context context;
@@ -33,6 +29,12 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder> 
     private int position;
     private final OnAddPizzaListener onAddPizzaListener;
 
+    /**
+     * Constructs a new {@link PizzaAdapter}.
+     * @param context is the activity context
+     * @param pizza is {@link List<Pizza>} object
+     * @param onAddPizzaListener is event listener when pizza added to cart
+     */
     public PizzaAdapter(Context context, List<Pizza> pizza, OnAddPizzaListener onAddPizzaListener) {
         this.context = context;
         this.pizza = pizza;

@@ -5,15 +5,21 @@ import android.os.Parcelable;
 
 public class MyPizza implements Parcelable {
 
-    String name;
-    String crust;
-    String size;
-    boolean isVeg;
+    private String name;
+    private String crust;
+    private String size;
+    private boolean isVeg;
+    private int price;
 
-    public boolean isVeg() {
-        return isVeg;
-    }
-
+    /**
+     * Constructs a new {@link MyPizza} object.
+     *
+     * @param name  is pizza's name
+     * @param crust is pizza's crust
+     * @param size  is pizza's size
+     * @param isVeg is the food type to find is pizza is Veg or Non-Veg
+     * @param price is pizza's price
+     */
     public MyPizza(String name, String crust, String size, boolean isVeg, int price) {
         this.name = name;
         this.crust = crust;
@@ -22,20 +28,13 @@ public class MyPizza implements Parcelable {
         this.price = price;
     }
 
-    public void setVeg(boolean veg) {
-        isVeg = veg;
-    }
-
-    int price;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
+    /**
+     * Constructs a new {@link MyPizza} object.
+     *
+     * @param pizza  {@link Pizza} is pizza's object
+     * @param crusts is {@link Crusts} object
+     * @param sizes  is {@link Sizes} object
+     */
     public MyPizza(Pizza pizza, Crusts crusts, Sizes sizes) {
         this.name = pizza.getName();
         this.crust = crusts.getName();
@@ -44,26 +43,72 @@ public class MyPizza implements Parcelable {
         this.price = sizes.getPrice();
     }
 
+    /**
+     * @return isVeg (true) or Non-Veg (false)
+     */
+    public boolean isVeg() {
+        return isVeg;
+    }
+
+    /**
+     * @param isVeg (true) or Non-Veg (false)
+     */
+    public void setVeg(boolean isVeg) {
+        this.isVeg = isVeg;
+    }
+
+    /**
+     * @return name of the pizza
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name set pizza's name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return pizza's crust name
+     */
     public String getCrust() {
         return crust;
     }
 
+    /**
+     * @param crust of the pizza
+     */
     public void setCrust(String crust) {
         this.crust = crust;
     }
 
+    /**
+     * @return size of the pizza
+     */
     public String getSize() {
         return size;
     }
 
+    /**
+     * @param size of the pizza
+     */
     public void setSize(String size) {
         this.size = size;
     }
 
+    /**
+     * @return price of the pizza
+     */
     public int getPrice() {
         return price;
     }
 
+    /**
+     * @param price of the pizza
+     */
     public void setPrice(int price) {
         this.price = price;
     }

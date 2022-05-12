@@ -10,6 +10,9 @@ public interface PizzaApi {
 
     String BASE_URL = "https://625bbd9d50128c570206e502.mockapi.io/api/v1/";
 
+    /**
+     * @return Pizza json response
+     */
     @GET("/pizza")
     Call<List<Pizza>> getPizza();
 }

@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.goldfish07.mypizza.activity.ViewCartActivity;
 import com.github.goldfish07.mypizza.adapter.CrustAdapter;
@@ -48,12 +49,10 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements Callback<List<Pizza>>, OnAddPizzaListener, PizzaPriceListener, View.OnClickListener {
 
-    RecyclerView recyclerView;
-    List<Pizza> pizzas;
-    PizzaAdapter pizzaAdapter;
+    private List<Pizza> pizzas;
+    private PizzaAdapter pizzaAdapter;
     protected ProgressBar progressBar;
-    TextView txtViewCartPrice;
-    RelativeLayout viewCartBtn;
+    private TextView txtViewCartPrice;
     public MyPizza myPizza;
 
     @Override
@@ -62,8 +61,8 @@ public class MainActivity extends AppCompatActivity implements Callback<List<Piz
         setContentView(R.layout.activity_main);
         progressBar = new ProgressBar.Builder(this);
         setSupportActionBar(findViewById(R.id.toolbar));
-        recyclerView = findViewById(R.id.recyclerView);
-        viewCartBtn = findViewById(R.id.totalLayout);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        RelativeLayout viewCartBtn = findViewById(R.id.totalLayout);
         txtViewCartPrice = findViewById(R.id.totalPriceTxt);
         viewCartBtn.setOnClickListener(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -103,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements Callback<List<Piz
     int price = 0;
     ArrayList<MyPizza> myPizzaArrayList = new ArrayList<>();
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onPriceUpdate(MyPizza myPizza, int totalPrice) {
         if (price == 0) {
@@ -110,11 +110,15 @@ public class MainActivity extends AppCompatActivity implements Callback<List<Piz
         } else {
             price = price + totalPrice;
         }
-        myPizzaArrayList.add(myPizza);
-        txtViewCartPrice.setText(String.valueOf(price));
+        if(myPizzaArrayList.size()<2){
+            myPizzaArrayList.add(myPizza);
+            txtViewCartPrice.setText(Integer.toString(price));
+        } else {
+            Toast.makeText(this,"you can order only 2 different pizzas",Toast.LENGTH_LONG).show();
+        }
         Log.e("price", String.valueOf(price));
     }
-    
+
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.totalLayout) {

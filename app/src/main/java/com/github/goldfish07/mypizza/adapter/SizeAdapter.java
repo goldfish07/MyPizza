@@ -24,6 +24,9 @@ import com.google.android.material.radiobutton.MaterialRadioButton;
 
 import java.util.List;
 
+/**
+ * Adapter for {@link Sizes} object
+ */
 public class SizeAdapter extends RecyclerView.Adapter<SizeAdapter.ViewHolder> {
 
     private final Context context;
@@ -33,8 +36,13 @@ public class SizeAdapter extends RecyclerView.Adapter<SizeAdapter.ViewHolder> {
     private int mSelectedItem = 0;
     private final OnSizeClickListener onSizeClickListener;
     int position;
-    MyPizza myPizza;
 
+    /**
+     * Constructs a new {@link SizeAdapter}.
+     * @param context is the activity context
+     * @param crusts is {@link Crusts} object
+     * @param onSizeClickListener is event listener for the crust's size selection
+     */
     public SizeAdapter(Context context, Crusts crusts, OnSizeClickListener onSizeClickListener) {
         this.context = context;
         this.sizes = crusts.getSizes();
@@ -42,13 +50,19 @@ public class SizeAdapter extends RecyclerView.Adapter<SizeAdapter.ViewHolder> {
         this.onSizeClickListener = onSizeClickListener;
     }
 
+    /**
+     * Constructs a new {@link SizeAdapter}.
+     * @param context is the activity
+     * @param pizza is {@link Pizza} object
+     * @param crusts is {@link Crusts} object
+     * @param onSizeClickListener is event listener for the crust's size selection
+     */
     public SizeAdapter(Activity context, Pizza pizza, Crusts crusts, OnSizeClickListener onSizeClickListener) {
         this.context = context;
         this.pizza = pizza;
         this.sizes = crusts.getSizes();
         this.crusts = crusts;
         this.onSizeClickListener = onSizeClickListener;
-
     }
 
     @NonNull

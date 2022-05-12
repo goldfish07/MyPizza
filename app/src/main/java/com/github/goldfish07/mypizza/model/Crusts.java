@@ -18,21 +18,26 @@ public class Crusts  implements Parcelable {
     @SerializedName("sizes")
     List<Sizes> sizes;
 
-    private boolean isSelected;
-
+    /**
+     * Constructs a new {@link Crusts} object.
+     *
+     * @param crusts is {@link Crusts} object
+     * id is crust's id
+     * name is crust's name
+     * defaultSize is default crust's size
+     * sizes is {@link Sizes} object
+     */
     public Crusts(Crusts crusts) {
         id = crusts.getId();
         name = crusts.getName();
         defaultSize = crusts.getDefaultSize();
         sizes = crusts.getSizes();
-
     }
 
     protected Crusts(Parcel in) {
         id = in.readInt();
         name = in.readString();
         defaultSize = in.readInt();
-        isSelected = in.readByte() != 0;
     }
 
     public static final Creator<Crusts> CREATOR = new Creator<Crusts>() {
@@ -47,45 +52,62 @@ public class Crusts  implements Parcelable {
         }
     };
 
+    /**
+     * @return id of the pizza
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * @param id set id of the pizza
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     * @return name of the crust
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * @param name of the crust
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * @return default size of the crust
+     */
     public int getDefaultSize() {
         return defaultSize;
     }
 
+    /**
+     * @param defaultSize size of the crust
+     */
     public void setDefaultSize(int defaultSize) {
         this.defaultSize = defaultSize;
     }
 
+    /**
+     * @return crust's sizes
+     */
     public List<Sizes> getSizes() {
         return sizes;
     }
 
+    /**
+     * @param sizes set crust's sizes list
+     */
     public void setSizes(List<Sizes> sizes) {
         this.sizes = sizes;
     }
 
-    public boolean isSelected() {
-        return isSelected;
-    }
-
-    public void setSelected(boolean selected) {
-        isSelected = selected;
-    }
     @Override
     public int describeContents() {
         return 0;

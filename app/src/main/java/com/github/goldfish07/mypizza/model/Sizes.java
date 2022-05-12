@@ -31,26 +31,44 @@ public class Sizes implements Parcelable {
         }
     };
 
+    /**
+     * @return id of crust's size
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * @param id of crust's size
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     * @return name of crust's size
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * @param name of crust's size
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * @return price of crust's size
+     */
     public int getPrice() {
         return price;
     }
 
+    /**
+     * @param price of crust's size
+     */
     public void setPrice(int price) {
         this.price = price;
     }

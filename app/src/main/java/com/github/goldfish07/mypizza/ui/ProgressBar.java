@@ -18,7 +18,6 @@ public class ProgressBar {
     MaterialAlertDialogBuilder builder;
     AlertDialog alertDialog;
 
-
     public void show() {
         if (alertDialog != null) {
             alertDialog.show();
@@ -42,7 +41,5 @@ public class ProgressBar {
                     context.getColor(android.R.color.transparent)
             );
         }
-
-
     }
 }
