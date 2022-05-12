@@ -23,18 +23,7 @@
       <change beforePath="$PROJECT_DIR$/.gradle/7.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/github/goldfish07/mypizza/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/github/goldfish07/mypizza/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/github/goldfish07/mypizza/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/github/goldfish07/mypizza/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/github/goldfish07/mypizza/Utils.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/github/goldfish07/mypizza/activity/ViewCartActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/github/goldfish07/mypizza/activity/ViewCartActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/github/goldfish07/mypizza/adapter/CrustAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/github/goldfish07/mypizza/adapter/CrustAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/github/goldfish07/mypizza/adapter/MyPizzaAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/github/goldfish07/mypizza/adapter/MyPizzaAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/github/goldfish07/mypizza/adapter/PizzaAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/github/goldfish07/mypizza/adapter/PizzaAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/github/goldfish07/mypizza/interfaces/OnAddPizzaListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/github/goldfish07/mypizza/interfaces/OnAddPizzaListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/github/goldfish07/mypizza/interfaces/OnCartUpdateListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/github/goldfish07/mypizza/interfaces/OnCartUpdateListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/github/goldfish07/mypizza/interfaces/OnCrustClickListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/github/goldfish07/mypizza/interfaces/OnCrustClickListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/github/goldfish07/mypizza/interfaces/OnSizeClickListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/github/goldfish07/mypizza/interfaces/OnSizeClickListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/github/goldfish07/mypizza/interfaces/PizzaPriceListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/github/goldfish07/mypizza/interfaces/PizzaPriceListener.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -86,7 +86,6 @@ public class ViewCartActivity extends AppCompatActivity implements OnCartUpdateL
             });
 
 
-
     public void emptyCart() {
         totalLayout.setVisibility(View.GONE);
         @SuppressLint("InflateParams")
