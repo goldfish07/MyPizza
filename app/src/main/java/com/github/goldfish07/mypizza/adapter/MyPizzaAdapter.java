@@ -31,7 +31,6 @@ public class MyPizzaAdapter extends RecyclerView.Adapter<MyPizzaAdapter.ViewHold
     private int counter = 1;
     private int totalPrice;
     private final OnCartUpdateListener onCartUpdateListener;
-    int price = 0;
     RecyclerView recyclerView;
 
     /**
@@ -125,6 +124,12 @@ public class MyPizzaAdapter extends RecyclerView.Adapter<MyPizzaAdapter.ViewHold
     ViewHolder holder;
     int newPrice = 0;
 
+    /**
+     * @param isIncrease check weather counter is increased or decreased
+     * @param price current price
+     * @param position clicked position
+     * @return price
+     */
     public int updateTotalPrice(boolean isIncrease, int price, int position) {
         for (int i = 0; i < 2; i++) {
             holder = (ViewHolder) recyclerView.findViewHolderForAdapterPosition(i);
@@ -146,7 +151,6 @@ public class MyPizzaAdapter extends RecyclerView.Adapter<MyPizzaAdapter.ViewHold
 //                    Log.e("price to be Minus",holder.pizzaPrice.getText().toString());
 //                    Log.e("new Price", String.valueOf(newPrice));
 //                }
-
             }
         }
         if (myPizzas.size() != 0)

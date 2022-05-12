@@ -2,13 +2,10 @@ package com.github.goldfish07.mypizza.activity;
 
 import static com.github.goldfish07.mypizza.Constants.INTENT_KEY_CRUSTS_OBJ;
 import static com.github.goldfish07.mypizza.Constants.INTENT_KEY_PIZZA_OBJ;
-import static com.github.goldfish07.mypizza.Constants.INTENT_KEY_SIZES_OBJ;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -19,7 +16,6 @@ import com.github.goldfish07.mypizza.MainActivity;
 import com.github.goldfish07.mypizza.R;
 import com.github.goldfish07.mypizza.model.Crusts;
 import com.github.goldfish07.mypizza.model.Pizza;
-import com.github.goldfish07.mypizza.model.Sizes;
 
 import java.util.ArrayList;
 

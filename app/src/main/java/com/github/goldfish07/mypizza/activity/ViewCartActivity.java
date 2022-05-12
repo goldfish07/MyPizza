@@ -16,13 +16,10 @@ import android.widget.TextView;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.github.goldfish07.mypizza.MainActivity;
 import com.github.goldfish07.mypizza.R;
-import com.github.goldfish07.mypizza.Utils;
 import com.github.goldfish07.mypizza.adapter.MyPizzaAdapter;
 import com.github.goldfish07.mypizza.interfaces.OnCartUpdateListener;
 import com.github.goldfish07.mypizza.model.MyPizza;
@@ -37,26 +34,24 @@ public class ViewCartActivity extends AppCompatActivity implements OnCartUpdateL
     private List<MyPizza> myPizzaList = new ArrayList<>();
     private RelativeLayout totalLayout;
     private TextView totalPriceTxt;
-    MaterialButton payNowBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
         rootCart = findViewById(R.id.rootCart);
-        payNowBtn = findViewById(R.id.payNowBtn);
+        MaterialButton payNowBtn = findViewById(R.id.payNowBtn);
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         totalLayout = findViewById(R.id.totalLayout);
         totalPriceTxt = findViewById(R.id.totalPriceTxt);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         payNowBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 launcher.launch(new Intent(ViewCartActivity.this, OrderPlacedActivity.class));
                 myPizzaList.clear();
-
             }
         });
 
@@ -80,6 +75,7 @@ public class ViewCartActivity extends AppCompatActivity implements OnCartUpdateL
         }
     }
 
+
     public ActivityResultLauncher<Intent> launcher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
@@ -88,6 +84,8 @@ public class ViewCartActivity extends AppCompatActivity implements OnCartUpdateL
                     finish();
                 }
             });
+
+
 
     public void emptyCart() {
         totalLayout.setVisibility(View.GONE);
@@ -100,6 +98,9 @@ public class ViewCartActivity extends AppCompatActivity implements OnCartUpdateL
         rootCart.addView(view);
     }
 
+    /**
+     * @param size is the {@link MyPizzaAdapter#getItemCount()}
+     */
     @Override
     public void onUpdate(int size) {
         if (size == 0) {
@@ -109,6 +110,9 @@ public class ViewCartActivity extends AppCompatActivity implements OnCartUpdateL
         }
     }
 
+    /**
+     * @param totalPrice is the price from each list of pizza
+     */
     @Override
     public void onTotalPrice(int totalPrice) {
         String price = String.valueOf(totalPrice);

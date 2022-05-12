@@ -2,15 +2,6 @@ package com.github.goldfish07.mypizza;
 
 import static com.github.goldfish07.mypizza.Constants.INTENT_KEY_MY_PIZZA_OBJ;
 import static com.github.goldfish07.mypizza.Constants.REQUEST_CODE_CART_EMPTY;
-import static com.github.goldfish07.mypizza.Constants.REQUEST_CODE_ORDER_PLACED;
-
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -25,12 +16,20 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.github.goldfish07.mypizza.activity.ViewCartActivity;
 import com.github.goldfish07.mypizza.adapter.CrustAdapter;
 import com.github.goldfish07.mypizza.adapter.PizzaAdapter;
 import com.github.goldfish07.mypizza.adapter.SizeAdapter;
-import com.github.goldfish07.mypizza.interfaces.OnCrustClickListener;
 import com.github.goldfish07.mypizza.interfaces.OnAddPizzaListener;
+import com.github.goldfish07.mypizza.interfaces.OnCrustClickListener;
 import com.github.goldfish07.mypizza.interfaces.OnSizeClickListener;
 import com.github.goldfish07.mypizza.interfaces.PizzaPriceListener;
 import com.github.goldfish07.mypizza.model.Crusts;
@@ -86,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements Callback<List<Piz
     @Override
     public void onFailure(@NonNull Call<List<Pizza>> call, @NonNull Throwable t) {
         progressBar.dismiss();
+        Toast.makeText(MainActivity.this,"Internet error occur",Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -145,6 +145,9 @@ public class MainActivity extends AppCompatActivity implements Callback<List<Piz
             });
 
 
+    /**
+     * show dialog when user click to add pizza button
+     */
     public static class CustomizeDialog extends BottomSheetDialogFragment implements OnCrustClickListener, OnSizeClickListener, View.OnClickListener {
 
         private final Activity context;
@@ -163,6 +166,11 @@ public class MainActivity extends AppCompatActivity implements Callback<List<Piz
         //        Sizes sizes = null;
         MyPizza myPizza;
 
+        /**
+         * @param context is activity context
+         * @param pizza is {@link Pizza}
+         * @param pizzaPriceListener {@link PizzaPriceListener}
+         */
         public CustomizeDialog(Activity context, Pizza pizza, PizzaPriceListener pizzaPriceListener) {
             this.context = context;
             this.pizza = pizza;
@@ -205,17 +213,26 @@ public class MainActivity extends AppCompatActivity implements Callback<List<Piz
             crustRecyclerView.setAdapter(new CrustAdapter(context, pizza, this));
         }
 
+        /**
+         * @param pizza is {@link Pizza} object
+         * @param crusts is {@link Crusts} object
+         */
         @Override
         public void onCrustSelected(Pizza pizza, Crusts crusts) {
             sizesRecyclerView.setAdapter(new SizeAdapter(context, pizza, crusts, this));
         }
 
+        /**
+         * @param sizes is {@link Sizes} object
+         */
         @Override
         public void onSizeSelected(Sizes sizes) {
             // this.sizes = sizes;
             sizePriceTxt.setText(String.valueOf(sizes.getPrice()));
         }
-
+        /**
+         * @param myPizza is {@link MyPizza} object
+         */
         @Override
         public void onSizeSelected(MyPizza myPizza) {
             this.myPizza = myPizza;

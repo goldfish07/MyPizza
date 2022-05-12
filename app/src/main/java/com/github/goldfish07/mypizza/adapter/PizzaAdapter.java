@@ -20,7 +20,7 @@ import com.google.android.material.button.MaterialButton;
 import java.util.List;
 
 /**
- * Adapter for {@link Pizza} object
+ * Adapter for {@link Pizza} object which display list of available pizza
  */
 public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder> implements View.OnClickListener {
 

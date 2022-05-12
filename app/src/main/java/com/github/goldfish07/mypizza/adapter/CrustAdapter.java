@@ -23,7 +23,7 @@ import com.google.android.material.radiobutton.MaterialRadioButton;
 import java.util.List;
 
 /**
- * Adapter for {@link Crusts} object
+ * Adapter for {@link Crusts} object, display list of available crusts
  */
 public class CrustAdapter extends RecyclerView.Adapter<CrustAdapter.ViewHolder> {
 
@@ -32,7 +32,6 @@ public class CrustAdapter extends RecyclerView.Adapter<CrustAdapter.ViewHolder> 
     private final List<Crusts> crusts;
     private final Pizza pizza;
     private final OnCrustClickListener onCrustClickListener;
-    int position;
 
     /**
      * Constructs a new {@link CrustAdapter}.
@@ -55,8 +54,6 @@ public class CrustAdapter extends RecyclerView.Adapter<CrustAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        this.position = position;
-
         if (!holder.radioButton.isChecked() && position == pizza.getDefaultCrust() - 1) { //for selecting default radio button
             holder.radioButton.setChecked(true);
             onCrustClickListener.onCrustSelected(pizza, crusts.get(position));
@@ -79,15 +76,6 @@ public class CrustAdapter extends RecyclerView.Adapter<CrustAdapter.ViewHolder> 
 //        });
         holder.radioButton.setTag(mSelectedItem);
     }
-
-//    public void uncheckRadioBtn(int position) {
-//        ViewHolder holder = (ViewHolder) recyclerView.findViewHolderForAdapterPosition(position);
-//        for (int i = 0; i < crusts.size(); i++) {
-//            if (holder.radioButton.isChecked()) {
-//                holder.radioButton.setChecked(false);
-//            }
-//        }
-//    }
 
     @Override
     public int getItemCount() {
