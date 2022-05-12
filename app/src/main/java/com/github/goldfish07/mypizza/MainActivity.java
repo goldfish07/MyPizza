@@ -2,6 +2,7 @@ package com.github.goldfish07.mypizza;
 
 import static com.github.goldfish07.mypizza.Constants.INTENT_KEY_MY_PIZZA_OBJ;
 import static com.github.goldfish07.mypizza.Constants.REQUEST_CODE_CART_EMPTY;
+import static com.github.goldfish07.mypizza.Constants.REQUEST_CODE_ORDER_PLACED;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -110,11 +111,11 @@ public class MainActivity extends AppCompatActivity implements Callback<List<Piz
         } else {
             price = price + totalPrice;
         }
-        if(myPizzaArrayList.size()<2){
+        if (myPizzaArrayList.size() < 2) {
             myPizzaArrayList.add(myPizza);
             txtViewCartPrice.setText(Integer.toString(price));
         } else {
-            Toast.makeText(this,"you can order only 2 different pizzas",Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "you can order only 2 different pizzas", Toast.LENGTH_LONG).show();
         }
         Log.e("price", String.valueOf(price));
     }
@@ -131,11 +132,14 @@ public class MainActivity extends AppCompatActivity implements Callback<List<Piz
     }
 
 
-    ActivityResultLauncher<Intent> launcher = registerForActivityResult(
+    public ActivityResultLauncher<Intent> launcher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
                 if (result.getResultCode() == REQUEST_CODE_CART_EMPTY) {
                     myPizzaArrayList.clear();
+                    pizzaAdapter = null;
+                    pizzas = null;
+                    price = 0;
                     txtViewCartPrice.setText("0");
                 }
             });
@@ -227,5 +231,4 @@ public class MainActivity extends AppCompatActivity implements Callback<List<Piz
             }
         }
     }
-
 }

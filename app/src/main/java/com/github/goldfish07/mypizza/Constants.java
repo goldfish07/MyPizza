@@ -14,6 +14,7 @@ public class Constants {
     public static final String JSON_KEY_PIZZA_PRICE = "jsonPrice";
 
     public static final int REQUEST_CODE_CART_EMPTY = 101;
+    public static final int REQUEST_CODE_ORDER_PLACED = 102;
 
 
 }

@@ -90,7 +90,6 @@ public class SizeAdapter extends RecyclerView.Adapter<SizeAdapter.ViewHolder> {
 
         holder.radioButton.setChecked(mSelectedItem == position);
         if (holder.radioButton.isChecked()) {
-
             onSizeClickListener.onSizeSelected(new MyPizza(pizza, crusts, sizes.get(mSelectedItem)));
             //onSizeClickListener.onSizeSelected(sizes.get(mSelectedItem)); //update item when user click radio button
         }

@@ -23,6 +23,7 @@
         </activity>
         <activity android:name=".activity.CustomizeActivity" />
         <activity android:name=".activity.ViewCartActivity" />
+        <activity android:name=".activity.OrderPlacedActivity" />
     </application>
 
 </manifest>
